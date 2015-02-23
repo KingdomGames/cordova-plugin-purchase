@@ -35,6 +35,7 @@ store.verbosity = 0;
     store.INITIATED = "initiated";
     store.APPROVED = "approved";
     store.FINISHED = "finished";
+    store.CANCEL_APPROVED = "cancelapproved";
     store.OWNED = "owned";
     store.QUIET = 0;
     store.ERROR = 1;
@@ -78,6 +79,15 @@ store.verbosity = 0;
             store.log.debug("product -> finishing " + this.id);
             if (this.state !== store.FINISHED) {
                 this.set("state", store.FINISHED);
+            }
+        });
+    };
+    store.Product.prototype.cancelApproved = function () {
+        store.log.debug("product -> defer cancel approved " + this.id);
+        defer(this, function() {
+            store.log.debug("product -> cancel approved " + this.id);
+            if (this.state !== store.CANCEL_APPROVED) {
+                this.set("state", store.CANCEL_APPROVED);
             }
         });
     };
