@@ -58,12 +58,15 @@ store.when("finished", function(product) {
 
 store.when("cancelapproved", function(product) {
     store.log.debug("ios -> cancel approved " + product.id);
+    alert("ios -> cancel approved " + product.id);
 
     //don't do this part
     //storekitFinish(product);
 
-    if (product.type === store.CONSUMABLE)
+    if (product.type === store.CONSUMABLE) {
+        alert ("setting state back to VALID");
         product.set("state", store.VALID);
+    }
     else
         product.set("state", store.OWNED);
 });

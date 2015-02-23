@@ -84,8 +84,10 @@ store.verbosity = 0;
     };
     store.Product.prototype.cancelApproved = function () {
         store.log.debug("product -> defer cancel approved " + this.id);
+        alert("product -> defer cancel approved " + this.id);
         defer(this, function() {
             store.log.debug("product -> cancel approved " + this.id);
+            alert("product -> cancel approved " + this.id);
             if (this.state !== store.CANCEL_APPROVED) {
                 this.set("state", store.CANCEL_APPROVED);
             }
