@@ -517,6 +517,8 @@ store.verbosity = 0;
         this.owned = this.owned || this.state === store.OWNED;
         this.valid = this.state !== store.INVALID;
         if (!this.state || this.state === store.REGISTERED) delete this.valid;
+
+        alert ("the state is: " + this.state);
         if (this.state) this.trigger(this.state);
     };
     store.Product.prototype.on = function(event, cb) {
