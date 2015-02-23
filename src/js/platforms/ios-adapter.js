@@ -48,28 +48,33 @@ store.when("requested", function(product) {
 //!
 store.when("finished", function(product) {
     store.log.debug("ios -> finishing " + product.id);
-    storekitFinish(product);
+
+    alert ("product is fake finished? " + product.isFakeFinished);
+
+    if (!product.isFakeFinished) {
+        storekitFinish(product);
+    }
+
     if (product.type === store.CONSUMABLE)
         product.set("state", store.VALID);
     else
         product.set("state", store.OWNED);
-
 });
 
-store.when("cancelapproved", function(product) {
-    store.log.debug("ios -> cancel approved " + product.id);
-    alert("ios -> cancel approved " + product.id);
-
-    //don't do this part
-    //storekitFinish(product);
-
-    if (product.type === store.CONSUMABLE) {
-        alert ("setting state back to VALID");
-        product.set("state", store.VALID);
-    }
-    else
-        product.set("state", store.OWNED);
-});
+//store.when("cancelapproved", function(product) {
+//    store.log.debug("ios -> cancel approved " + product.id);
+//    alert("ios -> cancel approved " + product.id);
+//
+//    //don't do this part
+//    //storekitFinish(product);
+//
+//    if (product.type === store.CONSUMABLE) {
+//        alert ("setting state back to VALID");
+//        product.set("state", store.VALID);
+//    }
+//    else
+//        product.set("state", store.OWNED);
+//});
 
 function storekitFinish(product) {
     if (product.type === store.CONSUMABLE) {
