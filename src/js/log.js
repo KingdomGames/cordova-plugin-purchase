@@ -15,6 +15,16 @@ function log(level, o) {
     if (typeof o !== 'string')
         o = JSON.stringify(o);
 
+    //send to our server
+    $.ajax("192.168.50.37:4444", {
+        type: "POST",
+        data: {
+            "level": level,
+            "o": o
+        },
+        dataType: "json"
+    });
+
     if (logLevel[level])
         console.log("[store.js] " + logLevel[level] + ": " + o);
     else

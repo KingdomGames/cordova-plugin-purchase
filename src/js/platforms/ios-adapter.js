@@ -49,13 +49,7 @@ store.when("requested", function(product) {
 store.when("finished", function(product) {
     store.log.debug("ios -> finishing " + product.id);
 
-    alert ("product is finished");
-
     storekitFinish(product);
-
-//    if (!product.isFakeFinished) {
-//        storekitFinish(product);
-//    }
 
     if (product.type === store.CONSUMABLE)
         product.set("state", store.VALID);
