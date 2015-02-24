@@ -82,7 +82,7 @@ public class InAppBillingPlugin extends CordovaPlugin {
 				final String sku = data.getString(0);
 				subscribe(sku);
 			} else if ("consumePurchase".equals(action)) {
-			    alert("consume purchase inside execute");
+			    window.alert("consume purchase inside execute");
 				consumePurchase(data);
 			} else if ("getAvailableProducts".equals(action)) {
 				// Get the list of purchases
@@ -279,7 +279,7 @@ public class InAppBillingPlugin extends CordovaPlugin {
 	
 	// Consume a purchase
 	private void consumePurchase(JSONArray data) throws JSONException{
-		alert("start consumePurchase function");
+		window.alert("start consumePurchase function");
 		if (mHelper == null){
 			callbackContext.error(IabHelper.ERR_FINISH + "|Did you forget to initialize the plugin?");
 			return;
@@ -291,7 +291,7 @@ public class InAppBillingPlugin extends CordovaPlugin {
 		Purchase purchase = myInventory.getPurchase(sku);
 		if (purchase != null)
 			// Consume it
-            alert("consuming the purchase");
+            window.alert("consuming the purchase");
 			mHelper.consumeAsync(purchase, mConsumeFinishedListener);
 		else
 			callbackContext.error(IabHelper.ERR_FINISH + "|" + sku + " is not owned so it cannot be consumed");
@@ -392,7 +392,7 @@ public class InAppBillingPlugin extends CordovaPlugin {
     // Called when consumption is complete
     IabHelper.OnConsumeFinishedListener mConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
         public void onConsumeFinished(Purchase purchase, IabResult result) {
-            alert("consume finished");
+            window.alert("consume finished");
             Log.d(TAG, "Consumption finished. Purchase: " + purchase + ", result: " + result);
 
             // We know this is the "gas" sku because it's the only one we consume,
@@ -401,7 +401,7 @@ public class InAppBillingPlugin extends CordovaPlugin {
             if (result.isSuccess()) {
                 // successfully consumed, so we apply the effects of the item in our
                 // game world's logic
-            	alert("consume result is success");
+            	window.alert("consume result is success");
                 // remove the item from the inventory
             	myInventory.erasePurchase(purchase.getSku());
                 Log.d(TAG, "Consumption successful. .");
