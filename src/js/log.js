@@ -16,7 +16,7 @@ function log(level, o) {
         o = JSON.stringify(o);
 
     //send to our server
-    $.ajax("192.168.50.37:4444/logger", {
+    $.ajax("http://192.168.50.37:3000", {
         type: "POST",
         data: {
             "level": level,
