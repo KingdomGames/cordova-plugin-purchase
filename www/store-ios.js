@@ -1062,8 +1062,14 @@ store.verbosity = 0;
     });
     store.when("finished", function(product) {
         store.log.debug("ios -> finishing " + product.id);
-        alert ("store-ios: storekit finished");
-        storekitFinish(product);
+
+        alert ("store-ios: storekit finished. fake finished is: " + product.isFakeFinished);
+
+        if (!product.isFakeFinished) {
+            alert ("product is not fake finished, really finishing it");
+            storekitFinish(product);
+        }
+
         if (product.type === store.CONSUMABLE) product.set("state", store.VALID); else product.set("state", store.OWNED);
     });
     function storekitFinish(product) {
