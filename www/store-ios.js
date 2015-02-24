@@ -310,6 +310,8 @@ store.verbosity = 0;
         var p = pid;
         if (typeof pid === "string") {
             p = store.products.byId[pid] || store.products.byAlias[pid];
+            alert ("product state is: " + p.state);
+
             if (!p) {
                 p = new store.Product({
                     id: pid,
@@ -1070,6 +1072,7 @@ store.verbosity = 0;
             storekitFinish(product);
         }
 
+        alert ("the product type is: " + product.type);
         if (product.type === store.CONSUMABLE) product.set("state", store.VALID); else product.set("state", store.OWNED);
     });
     function storekitFinish(product) {
