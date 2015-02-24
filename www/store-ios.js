@@ -1064,6 +1064,7 @@ store.verbosity = 0;
     });
     store.when("finished", function(product) {
         store.log.debug("ios -> finishing " + product.id);
+        alert ("store-ios: storekit finished");
         storekitFinish(product);
         if (product.type === store.CONSUMABLE) product.set("state", store.VALID); else product.set("state", store.OWNED);
     });
