@@ -156,7 +156,7 @@ store.Product.prototype.verify = function() {
                 var msg = (data && data.error && data.error.message ? data.error.message : '');
                 var err = new store.Error({
                     code: store.ERR_VERIFICATION_FAILED,
-                    message: "Transaction verification failed: " + msg
+                    message: msg
                 });
                 if (data.code === store.PURCHASE_EXPIRED) {
                     err = new store.Error({
