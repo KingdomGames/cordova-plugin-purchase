@@ -175,7 +175,10 @@ store.Product.prototype.verify = function() {
                         store.error(err);
                         store.utils.callExternal('verify.error', errorCb, err);
                         store.utils.callExternal('verify.done', doneCb, that);
+
                         that.trigger("expired");
+                        //that.trigger("unverified"); //andy: we want the unverified callback to hit
+
                         that.set("state", store.VALID);
                         store.utils.callExternal('verify.expired', expiredCb, that);
                     }
@@ -191,6 +194,9 @@ store.Product.prototype.verify = function() {
                     store.utils.callExternal('verify.error', errorCb, err);
                     store.utils.callExternal('verify.done', doneCb, that);
                     that.trigger("unverified");
+
+                    //andy: set it back to VALID so it can be purchased again
+                    that.set("state", store.VALID);
                 }
             }
         });
