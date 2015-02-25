@@ -310,7 +310,6 @@ store.verbosity = 0;
         var p = pid;
         if (typeof pid === "string") {
             p = store.products.byId[pid] || store.products.byAlias[pid];
-            alert ("product state is: " + p.state);
 
             if (!p) {
                 p = new store.Product({
