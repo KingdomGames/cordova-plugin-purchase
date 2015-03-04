@@ -183,7 +183,7 @@ store.Product.prototype.verify = function() {
                         store.utils.callExternal('verify.expired', expiredCb, that);
                     }
                 }
-                else if (nRetry < 4) {
+                else if (nRetry < 3) {
                     // It failed... let's try one more time. Maybe the appStoreReceipt wasn't updated yet.
                     nRetry += 1;
                     delay(this, tryValidation, 1000 * nRetry * nRetry);
