@@ -186,7 +186,8 @@ store.Product.prototype.verify = function() {
                 else if (nRetry < 3) {
                     // It failed... let's try one more time. Maybe the appStoreReceipt wasn't updated yet.
                     nRetry += 1;
-                    delay(this, tryValidation, 1000 * nRetry * nRetry);
+                    alert ("retrying.  nRetry = " + nRetry);
+                    delay(this, tryValidation, ((1000 * nRetry * nRetry) / 2));
                 }
                 else {
                     store.log.debug("validation failed 5 times, stop retrying, trigger an error");
