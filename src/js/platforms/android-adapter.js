@@ -224,19 +224,24 @@ store.when("product", "finished", function(product) {
     store.log.debug("android -> consumable finished");
     if (product.type === store.CONSUMABLE) {
         product.transaction = null;
-        store.android.consumePurchase(
-            function() { // success
-                store.log.debug("android -> consumable consumed");
-                product.set('state', store.VALID);
-            },
-            function(err, code) { // error
-                // can't finish.
-                store.error({
-                    code: code || store.ERR_UNKNOWN,
-                    message: err
-                });
-            },
-            product.id);
+
+        //andy: we're consuming before finish, so don't try to consume after
+//        store.android.consumePurchase(
+//            function() { // success
+//                store.log.debug("android -> consumable consumed");
+//                product.set('state', store.VALID);
+//            },
+//            function(err, code) { // error
+//                // can't finish.
+//                store.error({
+//                    code: code || store.ERR_UNKNOWN,
+//                    message: err
+//                });
+//            },
+//            product.id);
+
+        //andy: but we do need this line
+        product.set("state", store.VALID);
     }
     else {
         product.set('state', store.OWNED);
